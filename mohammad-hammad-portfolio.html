@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mohammad Hammad — Graphic Designer</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0d0d0d;
+    --surface: #161616;
+    --card: #1e1e1e;
+    --accent: #c8a96e;
+    --accent2: #8fb4a8;
+    --text: #f0ece4;
+    --muted: #888;
+    --border: rgba(255,255,255,0.07);
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 4rem 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(200,169,110,0.08) 0%, transparent 70%);
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+  }
+
+  .hero-badge {
+    display: inline-block;
+    background: rgba(200,169,110,0.1);
+    border: 1px solid rgba(200,169,110,0.25);
+    color: var(--accent);
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 0.4rem 1.2rem;
+    border-radius: 100px;
+    margin-bottom: 2rem;
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 8vw, 5.5rem);
+    font-weight: 700;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(135deg, #f0ece4 30%, #c8a96e 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero p {
+    font-size: 1.05rem;
+    color: var(--muted);
+    max-width: 460px;
+    line-height: 1.7;
+    margin-bottom: 2.5rem;
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    padding: 0.75rem 2rem;
+    border-radius: 100px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.25s;
+  }
+
+  .btn-primary {
+    background: var(--accent);
+    color: #0d0d0d;
+    border: none;
+  }
+  .btn-primary:hover { background: #d9bb80; transform: translateY(-2px); }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--text);
+    border: 1px solid var(--border);
+  }
+  .btn-outline:hover { border-color: rgba(255,255,255,0.2); transform: translateY(-2px); }
+
+  /* SECTION */
+  section {
+    padding: 6rem 2rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1rem;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 700;
+    line-height: 1.15;
+    margin-bottom: 1rem;
+  }
+
+  .section-sub {
+    color: var(--muted);
+    font-size: 1rem;
+    line-height: 1.7;
+    max-width: 500px;
+    margin-bottom: 3rem;
+  }
+
+  /* DIVIDER */
+  .divider {
+    width: 100%;
+    height: 1px;
+    background: var(--border);
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  /* PORTFOLIO GRID */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: transform 0.3s, border-color 0.3s;
+    cursor: pointer;
+  }
+  .card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(200,169,110,0.25);
+  }
+
+  .card-thumb {
+    width: 100%;
+    aspect-ratio: 4/3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card-info {
+    padding: 1.25rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .card-title {
+    font-size: 0.95rem;
+    font-weight: 500;
+    margin-bottom: 0.3rem;
+    color: var(--text);
+  }
+
+  .card-tag {
+    font-size: 0.75rem;
+    color: var(--muted);
+  }
+
+  /* DESIGN THUMBNAILS – pure CSS/SVG art */
+  /* 1 – Abstract Geometric */
+  .d1 { background: #1a1040; }
+  .d1 svg { width: 100%; height: 100%; }
+
+  /* 2 – Minimal Typography */
+  .d2 { background: #f5f0e8; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; }
+  .d2 span:first-child { font-family: 'Playfair Display', serif; font-size: 2rem; color: #1a1a1a; font-weight: 700; letter-spacing: -0.03em; }
+  .d2 span:last-child { font-size: 0.55rem; letter-spacing: 0.25em; color: #999; text-transform: uppercase; }
+
+  /* 3 – Retro Badge */
+  .d3 { background: #2d1b00; display: flex; align-items: center; justify-content: center; }
+  .d3 svg { width: 75%; height: 75%; }
+
+  /* 4 – Botanical */
+  .d4 { background: #0f1a10; display: flex; align-items: center; justify-content: center; }
+  .d4 svg { width: 90%; height: 90%; }
+
+  /* 5 – Neon Stripe */
+  .d5 { background: #0a0a0a; position: relative; display: flex; align-items: center; justify-content: center; }
+  .d5::after { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(45deg, transparent, transparent 18px, rgba(255,80,80,0.06) 18px, rgba(255,80,80,0.06) 19px); }
+  .d5 svg { position: relative; z-index: 1; width: 80%; height: 80%; }
+
+  /* 6 – Ink Splash */
+  .d6 { background: #fff8f0; display: flex; align-items: center; justify-content: center; }
+  .d6 svg { width: 85%; height: 85%; }
+
+  /* SERVICES */
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  .service-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.5rem;
+    transition: border-color 0.3s;
+  }
+  .service-card:hover { border-color: rgba(200,169,110,0.3); }
+
+  .service-icon {
+    width: 40px; height: 40px;
+    background: rgba(200,169,110,0.1);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+  }
+
+  .service-title {
+    font-size: 0.95rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+  }
+
+  .service-desc {
+    font-size: 0.82rem;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  /* CONTACT */
+  .contact-box {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 3rem;
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .contact-box h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .contact-box p {
+    color: var(--muted);
+    font-size: 0.95rem;
+    line-height: 1.7;
+    margin-bottom: 2rem;
+  }
+
+  .contact-links {
+    display: flex;
+    gap: 0.75rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .contact-link {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.6rem 1.2rem;
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    font-size: 0.82rem;
+    color: var(--text);
+    text-decoration: none;
+    transition: all 0.25s;
+  }
+  .contact-link:hover { border-color: rgba(200,169,110,0.4); color: var(--accent); }
+
+  /* FOOTER */
+  footer {
+    text-align: center;
+    padding: 3rem 2rem;
+    color: var(--muted);
+    font-size: 0.8rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .scroll-line {
+    width: 1px;
+    height: 60px;
+    background: linear-gradient(to bottom, transparent, var(--muted));
+    margin: 3rem auto 0;
+    animation: grow 1.5s ease infinite alternate;
+  }
+  @keyframes grow { from { height: 40px; opacity: 0.4; } to { height: 70px; opacity: 1; } }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">Print on Demand · Graphic Designer</div>
+  <h1>Mohammad<br>Hammad</h1>
+  <p>Crafting bold, timeless designs for t-shirts, apparel, and merchandise. Available on Merch by Amazon.</p>
+  <div class="hero-cta">
+    <a href="#portfolio" class="btn btn-primary">View Portfolio</a>
+    <a href="#contact" class="btn btn-outline">Get in Touch</a>
+  </div>
+  <div class="scroll-line"></div>
+</div>
+
+<div class="divider"></div>
+
+<!-- PORTFOLIO -->
+<section id="portfolio">
+  <div class="section-label">Selected Works</div>
+  <h2 class="section-title">Design Portfolio</h2>
+  <p class="section-sub">A curated selection of graphic designs crafted for print-on-demand apparel and merchandise.</p>
+
+  <div class="grid">
+
+    <!-- Card 1 – Abstract Geometric -->
+    <div class="card">
+      <div class="card-thumb d1">
+        <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+          <polygon points="200,20 380,280 20,280" fill="none" stroke="#c8a96e" stroke-width="1.5"/>
+          <polygon points="200,60 340,260 60,260" fill="none" stroke="#8fb4a8" stroke-width="1" opacity="0.7"/>
+          <polygon points="200,100 300,240 100,240" fill="none" stroke="#c8a96e" stroke-width="0.8" opacity="0.5"/>
+          <circle cx="200" cy="150" r="40" fill="none" stroke="#c8a96e" stroke-width="1" opacity="0.6"/>
+          <circle cx="200" cy="150" r="20" fill="rgba(200,169,110,0.15)"/>
+          <line x1="20" y1="150" x2="380" y2="150" stroke="rgba(255,255,255,0.08)" stroke-width="0.5"/>
+          <line x1="200" y1="20" x2="200" y2="280" stroke="rgba(255,255,255,0.08)" stroke-width="0.5"/>
+          <text x="200" y="157" text-anchor="middle" fill="#c8a96e" font-size="8" letter-spacing="3" font-family="DM Sans,sans-serif">HARMONY</text>
+        </svg>
+      </div>
+      <div class="card-info">
+        <div class="card-title">Sacred Geometry</div>
+        <div class="card-tag">T-Shirt · Minimalist</div>
+      </div>
+    </div>
+
+    <!-- Card 2 – Minimal Type -->
+    <div class="card">
+      <div class="card-thumb d2">
+        <span>BOLD<br>MIND</span>
+        <span>Stay Relentless · Never Settle</span>
+      </div>
+      <div class="card-info">
+        <div class="card-title">Bold Mind Typography</div>
+        <div class="card-tag">Apparel · Motivational</div>
+      </div>
+    </div>
+
+    <!-- Card 3 – Retro Badge -->
+    <div class="card">
+      <div class="card-thumb d3">
+        <svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="150" cy="150" r="130" fill="none" stroke="#c8a96e" stroke-width="2"/>
+          <circle cx="150" cy="150" r="115" fill="none" stroke="#c8a96e" stroke-width="0.5" opacity="0.5"/>
+          <path d="M 30 150 A 120 120 0 0 1 270 150" fill="none" stroke="#c8a96e" stroke-width="1.5"/>
+          <text x="150" y="125" text-anchor="middle" fill="#c8a96e" font-size="11" letter-spacing="6" font-family="DM Sans,sans-serif">ESTABLISHED</text>
+          <text x="150" y="160" text-anchor="middle" fill="#f5e8c8" font-size="38" font-weight="700" font-family="Playfair Display,serif">1994</text>
+          <text x="150" y="185" text-anchor="middle" fill="#c8a96e" font-size="9" letter-spacing="5" font-family="DM Sans,sans-serif">ORIGINAL</text>
+          <path d="M 80 200 L 100 195 L 150 210 L 200 195 L 220 200" fill="none" stroke="#c8a96e" stroke-width="1" opacity="0.6"/>
+        </svg>
+      </div>
+      <div class="card-info">
+        <div class="card-title">Retro Vintage Badge</div>
+        <div class="card-tag">Hoodie · Vintage Style</div>
+      </div>
+    </div>
+
+    <!-- Card 4 – Botanical -->
+    <div class="card">
+      <div class="card-thumb d4">
+        <svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+          <!-- Stem -->
+          <path d="M 150 270 Q 145 200 150 150 Q 155 100 148 60" stroke="#4a7c59" stroke-width="2" fill="none"/>
+          <!-- Leaves -->
+          <path d="M 148 160 Q 100 140 90 110 Q 130 115 148 160" fill="#4a7c59" opacity="0.9"/>
+          <path d="M 150 130 Q 200 110 210 80 Q 170 85 150 130" fill="#5a9068" opacity="0.8"/>
+          <path d="M 148 200 Q 95 185 85 155 Q 125 160 148 200" fill="#3d6b4a" opacity="0.7"/>
+          <path d="M 150 100 Q 198 82 205 52 Q 168 60 150 100" fill="#4a7c59" opacity="0.9"/>
+          <!-- Center flower -->
+          <circle cx="148" cy="62" r="18" fill="#c8a96e" opacity="0.9"/>
+          <circle cx="148" cy="62" r="10" fill="#0f1a10"/>
+          <circle cx="148" cy="62" r="5" fill="#c8a96e"/>
+          <text x="150" y="295" text-anchor="middle" fill="#4a7c59" font-size="9" letter-spacing="4" font-family="DM Sans,sans-serif">BLOOM</text>
+        </svg>
+      </div>
+      <div class="card-info">
+        <div class="card-title">Botanical Bloom</div>
+        <div class="card-tag">Tote Bag · Nature</div>
+      </div>
+    </div>
+
+    <!-- Card 5 – Neon Type -->
+    <div class="card">
+      <div class="card-thumb d5">
+        <svg viewBox="0 0 360 270" xmlns="http://www.w3.org/2000/svg">
+          <text x="180" y="110" text-anchor="middle" fill="#ff5050" font-size="52" font-weight="700" font-family="Playfair Display,serif" opacity="0.15">REBEL</text>
+          <text x="180" y="110" text-anchor="middle" fill="none" stroke="#ff5050" stroke-width="0.8" font-size="52" font-weight="700" font-family="Playfair Display,serif">REBEL</text>
+          <text x="180" y="155" text-anchor="middle" fill="#fff" font-size="9" letter-spacing="8" font-family="DM Sans,sans-serif" opacity="0.6">WITHOUT A CAUSE</text>
+          <line x1="60" y1="170" x2="300" y2="170" stroke="rgba(255,80,80,0.3)" stroke-width="0.5"/>
+          <text x="180" y="190" text-anchor="middle" fill="#ff5050" font-size="7" letter-spacing="5" font-family="DM Sans,sans-serif" opacity="0.5">EST. MCMXCIV</text>
+        </svg>
+      </div>
+      <div class="card-info">
+        <div class="card-title">Rebel — Street Type</div>
+        <div class="card-tag">Unisex T-Shirt · Urban</div>
+      </div>
+    </div>
+
+    <!-- Card 6 – Ink Abstract -->
+    <div class="card">
+      <div class="card-thumb d6">
+        <svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+          <ellipse cx="120" cy="130" rx="80" ry="90" fill="#1a1a2e" opacity="0.85" transform="rotate(-15 120 130)"/>
+          <ellipse cx="185" cy="140" rx="70" ry="85" fill="#16213e" opacity="0.8" transform="rotate(10 185 140)"/>
+          <ellipse cx="150" cy="120" rx="55" ry="70" fill="#0f3460" opacity="0.7" transform="rotate(-5 150 120)"/>
+          <circle cx="150" cy="125" r="22" fill="#c8a96e" opacity="0.9"/>
+          <circle cx="150" cy="125" r="12" fill="#fff8f0"/>
+          <text x="150" y="240" text-anchor="middle" fill="#1a1a2e" font-size="9" letter-spacing="4" font-family="DM Sans,sans-serif" font-weight="500">INK & SOUL</text>
+        </svg>
+      </div>
+      <div class="card-info">
+        <div class="card-title">Ink & Soul Abstract</div>
+        <div class="card-tag">Poster · Art Print</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-label">What I Do</div>
+  <h2 class="section-title">Services</h2>
+  <p class="section-sub">Specialising in print-ready designs for global marketplaces and branded merchandise.</p>
+
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-icon">🎨</div>
+      <div class="service-title">T-Shirt & Apparel Design</div>
+      <div class="service-desc">Original, print-ready graphics optimised for Merch by Amazon and similar platforms.</div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">✏️</div>
+      <div class="service-title">Typography & Lettering</div>
+      <div class="service-desc">Custom type-based designs — quotes, slogans, and motivational text layouts.</div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">📦</div>
+      <div class="service-title">Print on Demand</div>
+      <div class="service-desc">Designs formatted for POD marketplaces including correct resolution and colour profiles.</div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🖼️</div>
+      <div class="service-title">Logo & Brand Identity</div>
+      <div class="service-desc">Clean, versatile logos and brand marks for small businesses and personal brands.</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-box">
+    <div class="section-label" style="margin-bottom:1rem">Let's Work Together</div>
+    <h2>Ready to bring your idea to life?</h2>
+    <p>Whether you need a fresh t-shirt design or a complete brand identity, I'd love to hear from you.</p>
+    <div class="contact-links">
+      <a href="mailto:mohammadh@email.com" class="contact-link">✉ Email Me</a>
+      <a href="#" class="contact-link">💼 LinkedIn</a>
+      <a href="#" class="contact-link">📸 Instagram</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 Mohammad Hammad · Graphic Designer & POD Creator · All rights reserved</p>
+</footer>
+
+</body>
+</html>
